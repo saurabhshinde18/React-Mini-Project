@@ -3,7 +3,9 @@ import React, { useContext } from 'react'
 import { useForm} from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { recipiesdata } from '../context/Recipiecontext';
+import { useNavigate } from 'react-router-dom';
 const Create = () => {
+  let navigate = useNavigate();
   const {
       register,handleSubmit,reset,formState: { errors },
     } = useForm();  
@@ -14,10 +16,10 @@ const Create = () => {
       setrecipies([...recipies,data]);
     
       toast.success("Recipie Created Successfully");
+      navigate('/recipes');
       reset();
     }
-     console.log(recipies);
-
+   
   return (
     <>
     <div className="w-[40%] ml-[20%] mt-10">
