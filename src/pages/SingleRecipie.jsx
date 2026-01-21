@@ -24,15 +24,15 @@ const SingleRecipie = () => {
       } = useForm(
         {
       defaultValues: {
-      title: recipe.title,
-      description: recipe.description,
-      image:recipe.image,
-      ingridiants:recipe.ingridiants,
-      instructions:recipe.instructions,
-      category: recipe.category
+      title: recipe?.title,
+      description: recipe?.description,
+      image:recipe?.image,
+      ingridiants:recipe?.ingridiants,
+      instructions:recipe?.instructions,
+      category: recipe?.category
       
     }
-        }
+  }
       );  
 
 
@@ -42,6 +42,7 @@ const SingleRecipie = () => {
   const copydata = [...recipies];
   copydata[index] = { ...copydata[index], ...data };
   setrecipies(copydata);
+  localStorage.setItem("recipies", JSON.stringify(copydata));
   toast.success("Recipie Updated Successfully");
   navigate('/recipes');
   reset();
@@ -51,11 +52,11 @@ const SingleRecipie = () => {
 function handleDelete(id) {
   const newRecipes = recipies.filter(recipe => recipe.id != id);
   setrecipies(newRecipes);
+  localStorage.setItem("recipies", JSON.stringify(newRecipes));
   toast.warn("Deleted successfully");
    navigate('/recipes');
 }
 
-     
   if (!recipe) {
     return (
       <h1 className="text-center mt-20 text-2xl">

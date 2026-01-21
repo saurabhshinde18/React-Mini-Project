@@ -13,8 +13,10 @@ const Create = () => {
     const [recipies,setrecipies] = useContext((recipiesdata));
     function handleForm(data){
       data.id = nanoid();
-      setrecipies([...recipies,data]);
-    
+      let copydata = [...recipies];
+      copydata.push(data);
+      setrecipies(copydata);
+      localStorage.setItem("recipies",JSON.stringify(copydata));
       toast.success("Recipie Created Successfully");
       navigate('/recipes');
       reset();

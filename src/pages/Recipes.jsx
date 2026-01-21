@@ -1,10 +1,14 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { recipiesdata } from '../context/Recipiecontext'
 import Card from '../components/Recipiecard'
 
 const Recipes = () => {
-  const [recipies] = useContext(recipiesdata)
-  console.log(recipies)
+  const [recipies,setrecipies] = useContext(recipiesdata)
+  
+  useEffect(()=>{
+  const data = JSON.parse(localStorage.getItem("recipies")) || [];
+  setrecipies(data);
+  },[]);
 
   const newcard = recipies.map((elem) => {
     return (<Card elem={elem} key={elem.id}/>);
