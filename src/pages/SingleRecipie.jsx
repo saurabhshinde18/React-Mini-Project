@@ -4,13 +4,20 @@ import { useForm } from 'react-hook-form';
 import { recipiesdata } from '../context/Recipiecontext';
 import Recipes from './Recipes';
 import { toast } from 'react-toastify';
-
+import { useEffect } from 'react';
 const SingleRecipie = () => {
   const { id } = useParams();
   const [recipies,setrecipies] = useContext(recipiesdata);
   const navigate = useNavigate();
 
   const recipe = recipies.find(r => r.id == id);
+
+  useEffect(()=>{
+    console.log("single recipie mounted");
+     return ()=>{
+      console.log("single recipie unmounted");
+     }
+  },[])
  
   const {
         register,handleSubmit,reset,formState: { errors },
@@ -27,6 +34,8 @@ const SingleRecipie = () => {
     }
         }
       );  
+
+
     
  function handleForm(data) {
   const index = recipies.findIndex(recipe => id == recipe.id);

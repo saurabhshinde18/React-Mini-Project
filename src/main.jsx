@@ -7,12 +7,11 @@ import { ToastContainer } from 'react-toastify'
 import Recipiecontext from './context/Recipiecontext.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
     <BrowserRouter>
     <Recipiecontext>
           <App />
     </Recipiecontext>
        <ToastContainer position='top-center'/>
     </BrowserRouter>
-  </StrictMode>,
+  ,
 )
